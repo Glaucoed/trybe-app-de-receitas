@@ -16,6 +16,7 @@ function Provider({ children }) {
   const [categoryDrink, setCategoryDrink] = useState([]);
   const [inProgress, setinProgress] = useState({});
   const [estadoParalelo, setEParalelo] = useState({});
+  const [refresh, setRefresh] = useState(true);
 
   const handleChangeRadio = ({ target }) => {
     setRadio(target.value);
@@ -69,6 +70,8 @@ function Provider({ children }) {
     inputSearch,
     setInputSearch,
     handleChangeRadio,
+    refresh,
+    setRefresh,
 
   }), [radio,
     inputSearch,
@@ -81,6 +84,7 @@ function Provider({ children }) {
     estadoParalelo,
     categoryDrink,
     categoryMeal,
+    refresh,
   ]);
 
   return (

@@ -61,7 +61,7 @@ export default function DoneRecipeCard({ food: meals }) {
 
           <div>
             {
-              receita.tags.map((tag) => (
+              receita.tags?.map((tag) => (
                 <p
                   key={ tag }
                   data-testid={ `${index}-${tag}-horizontal-tag` }

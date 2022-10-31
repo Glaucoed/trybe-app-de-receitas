@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import DoneRecipeCard from '../components/DoneRecipeCard';
 import Header from '../components/Header';
-// import MyContext from '../Context/MyContext';
-// const {} = useContext(MyContext)
+import Footer from '../components/Footer';
+import MyContext from '../Context/MyContext';
 
 export default function FavoriteRecipes() {
-  const key = 'favoriteRecipes';
-  window.localStorage.setItem(key, JSON.stringify(mockDoneRecipes));
-  const storage = localStorage.getItem('favoriteRecipes');
-  console.log(storage);
+  const { refresh, setRefresh } = useContext(MyContext);
+  // const key = 'favoriteRecipes';
+  // window.localStorage.setItem(key, JSON.stringify(mockDoneRecipes));
+  // const storage = localStorage.getItem('favoriteRecipes');
+  // console.log(storage);
+
+  useEffect(() => {
+    const renderPage = () => {
+      setRefresh(true);
+    };
+    renderPage();
+  }, [refresh, setRefresh]);
 
   const [filter, setFilter] = useState('all');
   const doneRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
