@@ -43,7 +43,7 @@ export default function DoneRecipes() {
           type="button"
           data-testid="filter-by-drink-btn"
           onClick={ () => {
-            setFilter('drink'); //
+            setFilter('drink');
           } }
         >
           Drinks

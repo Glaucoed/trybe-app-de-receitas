@@ -6,11 +6,12 @@ import MyContext from '../Context/MyContext';
 
 export default function FavoriteRecipes() {
   const { refresh, setRefresh } = useContext(MyContext);
+// import MyContext from '../Context/MyContext';
+// const {} = useContext(MyContext)
   // const key = 'favoriteRecipes';
   // window.localStorage.setItem(key, JSON.stringify(mockDoneRecipes));
   // const storage = localStorage.getItem('favoriteRecipes');
   // console.log(storage);
-
   useEffect(() => {
     const renderPage = () => {
       setRefresh(true);
@@ -51,7 +52,7 @@ export default function FavoriteRecipes() {
           type="button"
           data-testid="filter-by-drink-btn"
           onClick={ () => {
-            setFilter('drink'); //
+            setFilter('drink');
           } }
         >
           Drinks
