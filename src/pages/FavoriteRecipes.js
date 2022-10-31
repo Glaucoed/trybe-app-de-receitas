@@ -6,8 +6,8 @@ import MyContext from '../Context/MyContext';
 
 export default function FavoriteRecipes() {
   const { refresh, setRefresh } = useContext(MyContext);
-// import MyContext from '../Context/MyContext';
-// const {} = useContext(MyContext)
+  // import MyContext from '../Context/MyContext';
+  // const {} = useContext(MyContext)
   // const key = 'favoriteRecipes';
   // window.localStorage.setItem(key, JSON.stringify(mockDoneRecipes));
   // const storage = localStorage.getItem('favoriteRecipes');
