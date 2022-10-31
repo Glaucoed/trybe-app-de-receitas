@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import DoneRecipeCard from '../components/DoneRecipeCard';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 // import MyContext from '../Context/MyContext';
 // const {} = useContext(MyContext)
 
 export default function FavoriteRecipes() {
-  const key = 'favoriteRecipes';
-  window.localStorage.setItem(key, JSON.stringify(mockDoneRecipes));
-  const storage = localStorage.getItem('favoriteRecipes');
-  console.log(storage);
+  // const key = 'favoriteRecipes';
+  // window.localStorage.setItem(key, JSON.stringify(mockDoneRecipes));
+  // const storage = localStorage.getItem('favoriteRecipes');
+  // console.log(storage);
 
   const [filter, setFilter] = useState('all');
   const doneRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
@@ -43,7 +44,7 @@ export default function FavoriteRecipes() {
           type="button"
           data-testid="filter-by-drink-btn"
           onClick={ () => {
-            setFilter('drink'); //
+            setFilter('drink');
           } }
         >
           Drinks
