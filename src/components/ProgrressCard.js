@@ -16,6 +16,7 @@ export default function ProgrressCard({
   type,
   nationality,
   alcoholicOrNot,
+  strTag,
 
 }) {
   const [isDone, setIsDone] = useState(true);
@@ -25,6 +26,7 @@ export default function ProgrressCard({
   const { setEParalelo } = useContext(MyContext);
   const { location: { pathname } } = useHistory();
   const history = useHistory();
+  const dateNow = new Date();
 
   useEffect(() => {
     const arrFavorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -117,12 +119,14 @@ export default function ProgrressCard({
       console.log('vazio');
       const objetocomida = {
         id,
-        type,
         nationality,
-        category,
-        alcoholicOrNot,
         name: title,
+        category,
         image: img,
+        tags: strTag ? strTag.split(',') : [],
+        alcoholicOrNot,
+        type,
+        doneDate: dateNow.toISOString(),
       };
       const paralela = [objetocomida];
 
@@ -133,12 +137,14 @@ export default function ProgrressCard({
       console.log(done);
       const objetocomida = {
         id,
-        type,
         nationality,
-        category,
-        alcoholicOrNot,
         name: title,
+        category,
         image: img,
+        tags: strTag ? strTag.split(',') : [],
+        alcoholicOrNot,
+        type,
+        doneDate: dateNow.toISOString(),
       };
       const addfinished = [...done, objetocomida];
       localStorage.setItem('doneRecipes', JSON.stringify(addfinished));
