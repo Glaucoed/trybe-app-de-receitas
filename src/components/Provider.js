@@ -46,7 +46,7 @@ function Provider({ children }) {
     apiComida();
     apiBebidas();
     console.log(estadoParalelo);
-  }, []);
+  }, [estadoParalelo]);
   const contextValue = useMemo(() => ({
     estadoParalelo,
     setEParalelo,

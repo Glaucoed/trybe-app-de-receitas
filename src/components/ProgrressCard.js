@@ -40,7 +40,7 @@ export default function ProgrressCard({
     } else {
       setFavorite(false);
     }
-  }, []);
+  }, [id]);
   useEffect(() => {
     const a = ingredients.filter((ingredient) => ingredient.isChecked !== true);
     if (a.length === 0) {
@@ -48,7 +48,7 @@ export default function ProgrressCard({
     } else {
       setIsDone(true);
     }
-  }, [isDone2]);
+  }, [isDone2, ingredients]);
   const redirectDone = '/done-recipes';
   const handleChange = (e) => {
     setIsDone2(!isDone2);

@@ -87,7 +87,7 @@ export default function RecipeDetails({ match: { url } }) {
   };
   const ingredientsAndMeasures = createIngredientsAndMeasuresObj();
   const history = useHistory();
-  const redirecttoProgress = () => {
+  const redirectToProgress = () => {
     if (url.includes('/drinks')) {
       setEParalelo([]);
       history.push(`${url}/in-progress`);
@@ -95,8 +95,6 @@ export default function RecipeDetails({ match: { url } }) {
     if (url.includes('/meals')) {
       history.push(`${url}/in-progress`);
     }
-  };
-  const redirecttoProgress2 = () => {
   };
   const copyLink = () => {
     const link = `http://localhost:3000/${type}/${id}`;
@@ -184,8 +182,6 @@ export default function RecipeDetails({ match: { url } }) {
             </div>
           )
       }
-      <button type="button" onClick={ () => redirecttoProgress() }>progess</button>
-      <button type="button" onClick={ () => redirecttoProgress2() }>progess2</button>
       <h4>Recomendações</h4>
       <div style={ { display: 'flex' } }>
         {
@@ -220,9 +216,11 @@ export default function RecipeDetails({ match: { url } }) {
           data-testid="start-recipe-btn"
           type="button"
           style={ { position: 'fixed', bottom: '0px' } }
+          onClick={ inProgress ? redirectToProgress() : undefined }
         >
           { inProgress ? 'Continue Recipe' : 'Start Recipe' }
         </button>
+
       </Link>
       <button type="button" data-testid="share-btn" onClick={ copyLink }>
         {' '}
