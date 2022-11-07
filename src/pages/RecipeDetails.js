@@ -1,17 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, Link } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
 import MyContext from '../Context/MyContext';
 import CardRecommendations from '../components/CardRecommentations';
-import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
-
-const copy = require('clipboard-copy');
-
-const negative1 = -1;
+import ShareButton from '../components/ShareButton';
+import '../components/componentsCss/RecipeDetails.css';
 
 export default function RecipeDetails({ match: { url } }) {
+  const negative1 = -1;
+  const six = 6;
   const { setinProgress, setEParalelo } = useContext(MyContext);
   const [info, setInfo] = useState({});
   const [renderVideo, setRenderVideo] = useState('');
@@ -19,10 +21,8 @@ export default function RecipeDetails({ match: { url } }) {
   const [mealsRecommendations, setMealsRecommendations] = useState([]);
   const [type, setType] = useState('');
   const [id, setId] = useState('');
-  const [copied, setCopied] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [favorite, setFavorite] = useState(false);
-  const six = 6;
 
   useEffect(() => {
     const requestAPI = async () => {
@@ -91,15 +91,9 @@ export default function RecipeDetails({ match: { url } }) {
     if (url.includes('/drinks')) {
       setEParalelo([]);
       history.push(`${url}/in-progress`);
-    }
-    if (url.includes('/meals')) {
+    } if (url.includes('/meals')) {
       history.push(`${url}/in-progress`);
     }
-  };
-  const copyLink = () => {
-    const link = `http://localhost:3000/${type}/${id}`;
-    copy(link);
-    setCopied(true);
   };
   const favoriteToLocalStorage = () => {
     const objFavoriteToAdd = () => {
@@ -146,99 +140,106 @@ export default function RecipeDetails({ match: { url } }) {
       setFavorite(false);
     }
   };
-
   return (
-    <div>
-      <img
-        data-testid="recipe-photo"
-        src={ info.strDrinkThumb || info.strMealThumb }
-        alt={ info.idDrink || info.idMeal }
-      />
-      <h3 data-testid="recipe-title">{info.strDrink || info.strMeal}</h3>
-      <h4 data-testid="recipe-category">{info.strAlcoholic || info.strCategory}</h4>
-      <ul>
-        {
-          ingredientsAndMeasures.map((ingredient, index) => (
-            <li key={ index } data-testid={ `${index}-ingredient-name-and-measure` }>
+    <Container className="recipeCentral">
+      <Container className="recipeDetail">
+        <img
+          className="RecImg"
+          data-testid="recipe-photo"
+          src={ info.strDrinkThumb || info.strMealThumb }
+          alt={ info.idDrink || info.idMeal }
+        />
+        <div className="titleRecipe">
+          <h1 data-testid="recipe-title">{info.strDrink || info.strMeal}</h1>
+        </div>
+        <h3
+          data-testid="recipe-category"
+        >
+          <span>  Category: </span>
+          {` ${info.strAlcoholic || info.strCategory}`}
+
+        </h3>
+        <ul>
+          { ingredientsAndMeasures.map((ingredient, index) => (
+            <li
+              className="recipList"
+              key={ index }
+              data-testid={ `${index}-ingredient-name-and-measure` }
+            >
               {`${Object.keys(ingredient)[0]} -  ${Object.values(ingredient)[0]}`}
             </li>
-          ))
-        }
-      </ul>
-      <p data-testid="instructions">{info.strInstructions}</p>
-      {
-        renderVideo === 'meals'
-          && (
-            <div className="video-responsive">
-              <iframe
-                data-testid="video"
-                width="853"
-                height="480"
-                src={ `https://www.youtube.com/embed/${info.strYoutube.split('=').slice(negative1).pop()}` }
-                frameBorder="0"
-                allowFullScreen
-                title="Embedded youtube"
-              />
-            </div>
-          )
-      }
-      <h4>Recomendações</h4>
-      <div style={ { display: 'flex' } }>
-        {
-          type === 'drinks' && mealsRecommendations
-            .slice(0, six).map((receita, index) => (
-              <CardRecommendations
-                id={ receita.idMeal }
-                key={ Math.random() }
-                nome={ receita.strMeal }
-                srcImg={ receita.strMealThumb }
-                index={ index }
-                type={ type === 'meals' ? 'drinks' : 'meals' }
-              />
-            ))
-        }
-        {
-          type === 'meals' && drinksRecommendations
-            .slice(0, six).map((receita, index) => (
-              <CardRecommendations
-                id={ receita.idDrink }
-                key={ Math.random() }
-                nome={ receita.strDrink }
-                srcImg={ receita.strDrinkThumb }
-                index={ index }
-                type={ type === 'meals' ? 'drinks' : 'meals' }
-              />
-            ))
-        }
-      </div>
-      <Link to={ `/${type}/${id}/in-progress` }>
-        <button
-          data-testid="start-recipe-btn"
-          type="button"
-          style={ { position: 'fixed', bottom: '0px' } }
-          onClick={ inProgress ? redirectToProgress() : undefined }
-        >
-          { inProgress ? 'Continue Recipe' : 'Start Recipe' }
-        </button>
-
-      </Link>
-      <button type="button" data-testid="share-btn" onClick={ copyLink }>
-        {' '}
-        <img
-          src={ shareIcon }
-          alt="search-icon"
-        />
-        Compartilhar
-      </button>
-      <button type="button" onClick={ favoriteToLocalStorage }>
-        <img
-          src={ favorite ? blackHeartIcon : whiteHeartIcon }
-          alt="favoriteIcon"
-          data-testid="favorite-btn"
-        />
-      </button>
-      { copied && <p>Link copied!</p>}
-    </div>
+          ))}
+        </ul>
+        <p data-testid="instructions">{info.strInstructions}</p>
+        { renderVideo === 'meals'
+        && (
+          <div className="video-responsive">
+            <iframe
+              data-testid="video"
+              width="320"
+              height="240"
+              src={ `https://www.youtube.com/embed/${info.strYoutube.split('=').slice(negative1).pop()}` }
+              frameBorder="0"
+              allowFullScreen
+              title="Embedded youtube"
+            />
+          </div>
+        )}
+        <div className="btnCompFav">
+          <ShareButton />
+          <Button
+            type="button"
+            variant="warning"
+            onClick={ favoriteToLocalStorage }
+          >
+            <img
+              src={ favorite ? blackHeartIcon : whiteHeartIcon }
+              alt="favoriteIcon"
+              data-testid="favorite-btn"
+            />
+          </Button>
+        </div>
+        <h4>Recomendações</h4>
+        <Container>
+          <Row className="rowRecom">
+            { type === 'drinks' && mealsRecommendations
+              .slice(0, six).map((receita, index) => (
+                <CardRecommendations
+                  id={ receita.idMeal }
+                  key={ Math.random() }
+                  nome={ receita.strMeal }
+                  srcImg={ receita.strMealThumb }
+                  index={ index }
+                  type={ type === 'meals' ? 'drinks' : 'meals' }
+                />
+              ))}
+            { type === 'meals' && drinksRecommendations
+              .slice(0, six).map((receita, index) => (
+                <CardRecommendations
+                  id={ receita.idDrink }
+                  key={ Math.random() }
+                  nome={ receita.strDrink }
+                  srcImg={ receita.strDrinkThumb }
+                  index={ index }
+                  type={ type === 'meals' ? 'drinks' : 'meals' }
+                />
+              ))}
+          </Row>
+        </Container>
+        <div className="btnStart">
+          <Link to={ `/${type}/${id}/in-progress` }>
+            <Button
+              variant="warning"
+              data-testid="start-recipe-btn"
+              type="button"
+              onClick={ inProgress ? redirectToProgress() : undefined }
+            >
+              { inProgress ? 'Continue Recipe' : 'Start Recipe' }
+            </Button>
+          </Link>
+        </div>
+      </Container>
+    </Container>
   );
 }
 RecipeDetails.propTypes = {

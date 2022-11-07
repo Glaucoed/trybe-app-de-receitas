@@ -1,35 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './componentsCss/card.css';
-// import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import './componentsCss/CardRecommentation.css';
 
-export default function Card({ nome, srcImg, index, id, type }) {
+export default function CardRecommentations({ nome, srcImg, index, id, type }) {
   return (
-    <Link to={ `/${type}/${id}` }>
-      <div
-        aria-hidden
-        role="button"
-        className={ index > 1 ? 'cardRecommendation' : 'card' }
-        key={ Math.random() }
-        data-testid={ `${index}-recommendation-card` }
-      >
-        <h4
-          key={ Math.random() }
-          data-testid={ `${index}-recommendation-title` }
-        >
-          {nome}
-        </h4>
-        <img
-          key={ Math.random() }
-          src={ srcImg }
-          alt="img"
-          data-testid={ `${index}-card-img` }
-        />
-      </div>
-    </Link>
+
+    <Col
+      className="cardRecom"
+      data-testid={ `${index}-recommendation-card` }
+    >
+      <Card className="cardRem">
+
+        <Link to={ `/${type}/${id}` }>
+          <Card.Img
+            className="imgRecom"
+            src={ srcImg }
+            alt={ `imagem${nome} ` }
+            data-testid={ `${index}-card-img` }
+          />
+          <Card.Title
+            data-testid={ `${index}-recommendation-title` }
+          >
+            {nome}
+          </Card.Title>
+        </Link>
+      </Card>
+
+    </Col>
+
   );
 }
+
+CardRecommentations.propTypes = {
+  id: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+  nome: PropTypes.string.isRequired,
+  srcImg: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+};
 
 Card.propTypes = {
   srcImg: PropTypes.string,

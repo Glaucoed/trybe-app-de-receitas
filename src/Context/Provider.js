@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import MyContext from '../Context/MyContext';
+import MyContext from './MyContext';
 import mealsAPI from '../helpers/functionsAPI';
 import drinksAPI from '../helpers/drinkAPI';
 
@@ -17,6 +17,7 @@ function Provider({ children }) {
   const [inProgress, setinProgress] = useState({});
   const [estadoParalelo, setEParalelo] = useState({});
   const [refresh, setRefresh] = useState(true);
+  const [hidden, setHidden] = useState(false);
 
   const handleChangeRadio = ({ target }) => {
     setRadio(target.value);
@@ -45,7 +46,6 @@ function Provider({ children }) {
     apiCategoryMeal();
     apiComida();
     apiBebidas();
-    console.log(estadoParalelo);
   }, [estadoParalelo]);
   const contextValue = useMemo(() => ({
     estadoParalelo,
@@ -72,6 +72,8 @@ function Provider({ children }) {
     handleChangeRadio,
     refresh,
     setRefresh,
+    hidden,
+    setHidden,
 
   }), [radio,
     inputSearch,
@@ -85,6 +87,7 @@ function Provider({ children }) {
     categoryDrink,
     categoryMeal,
     refresh,
+    hidden,
   ]);
 
   return (

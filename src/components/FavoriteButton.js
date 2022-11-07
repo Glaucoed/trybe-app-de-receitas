@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import PropTypes, { number, string } from 'prop-types';
+import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/esm/Button';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import MyContext from '../Context/MyContext';
 
@@ -15,33 +16,29 @@ function FavoriteButton({ receita, dataId }) {
   };
 
   return (
-    <div>
-      <button
-        type="button"
-        onClick={ () => favoriteToLocalStorage() }
-        src={ blackHeartIcon }
-        data-testid={ dataId }
-      >
-        <img src={ blackHeartIcon } alt="Heart Icon" />
-      </button>
-    </div>
+    <Button
+      variant="warning"
+      type="button"
+      onClick={ () => favoriteToLocalStorage() }
+      src={ blackHeartIcon }
+      data-testid={ dataId }
+    >
+      <img src={ blackHeartIcon } alt="Heart Icon" />
+    </Button>
   );
 }
 
 FavoriteButton.propTypes = {
   dataId: PropTypes.string.isRequired,
-  // receita: PropTypes.objectOf.isRequired,
-  receita: PropTypes.objectOf(
-    PropTypes.shape({
-      id: number,
-      type: string,
-      nationality: string,
-      category: string,
-      alcoholicOrNot: string,
-      name: string,
-      image: string,
-    }),
-  ).isRequired,
+  receita: PropTypes.shape({
+    id: PropTypes.string,
+    type: PropTypes.string,
+    nationality: PropTypes.string,
+    category: PropTypes.string,
+    alcoholicOrNot: PropTypes.string,
+    name: PropTypes.string,
+    image: PropTypes.string,
+  }).isRequired,
 };
 
 export default FavoriteButton;

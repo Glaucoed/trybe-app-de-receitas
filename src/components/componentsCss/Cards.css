@@ -1,0 +1,42 @@
+.card-img-top {
+
+  /* border-radius: 5%; */
+  padding: 1px;
+}
+
+h5 {
+  margin-top: 10px;
+}
+
+body {
+  background-image: url('https://images.pexels.com/photos/349610/pexels-photo-349610.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-size: cover;
+}
+
+.cardCol {
+  color: rgba(255, 202, 44, 0.705);
+  padding-top: 4%;
+
+}
+
+.card {
+  background-color: #403233;
+}
+
+.card:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24) , 0 10px 30px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-title {
+  font-size: 0.9em;
+  overflow: hidden;
+  padding: 10px 5px 0 6px;
+  text-align: start;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+}
+
+.rowRecipe {
+  margin-bottom: 5%;
+}

@@ -1,7 +1,14 @@
 .footercss {
-  background-color: grey;
+  border-radius: 0 0 22px 22px;
   display: flex;
   justify-content: center;
-  opacity: 75%;
-  width: 100%;
+}
+
+.btnFooter {
+  margin-top: 5px;
+  padding: 2px;
+}
+
+.btnFooter:hover {
+  background-color: #ffc008;
 }

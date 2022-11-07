@@ -1,62 +1,69 @@
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { useContext } from 'react';
+import Row from 'react-bootstrap/Row';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import MyContext from '../Context/MyContext';
-import Card from '../components/Card';
+import Cards from '../components/Cards';
 import CategoryFilter from '../components/CategoryFilter';
-import './Recipes.css';
+import '../components/componentsCss/Recipes.css';
 
 export default function Recipes() {
   const { location: { pathname } } = useHistory();
   const { APIMeals, APIDrinks, categoryDrink, categoryMeal } = useContext(MyContext);
   const renderAlert = APIMeals === null || APIDrinks === null;
   const functionSelector = pathname === '/meals';
-  const doze = 12;
+  const DOZE = 12;
 
   return (
-    <div>
+    <>
       <Header header profile search title={ functionSelector ? 'Meals' : 'Drinks' } />
-      {functionSelector && <CategoryFilter apiType={ categoryMeal } />}
-      {!functionSelector && <CategoryFilter apiType={ categoryDrink } />}
-      <div className="RecipesContainer">
 
-        {!renderAlert
-        && (
-          <div className="receitasContainer">
-            {
-              functionSelector && APIMeals.slice(0, doze).map((receita, index) => (
-                <Card
-                  id={ receita.idMeal }
-                  key={ Math.random() }
-                  nome={ receita.strMeal }
-                  srcImg={ receita.strMealThumb }
-                  index={ index }
-                />
-              ))
-            }
+      {
+        functionSelector
+          ? <CategoryFilter apiType={ categoryMeal } />
+          : <CategoryFilter apiType={ categoryDrink } />
+      }
 
-            {
-              !functionSelector
-           && APIDrinks.slice(0, doze).map((receita, index) => (
-             <Card
-               id={ receita.idDrink }
-               key={ Math.random() }
-               nome={ receita.strDrink }
-               srcImg={ receita.strDrinkThumb }
-               index={ index }
-             />
-           ))
-            }
-          </div>
-        )}
-        {renderAlert
-      && global.alert('Sorry, we haven\'t found any recipes for these filters.')}
+      <section className="RecipesContainer">
 
-      </div>
+        {
+          !renderAlert
+            ? (
+              <Row md={ 2 } xs={ 2 } className="rowRecipe">
+                {
+                  functionSelector
+                      && APIMeals.slice(0, DOZE).map((receita, index) => (
+                        <Cards
+                          id={ receita.idMeal }
+                          key={ Math.random() }
+                          nome={ receita.strMeal }
+                          srcImg={ receita.strMealThumb }
+                          index={ index }
+                        />
+                      ))
+                }
+
+                { !functionSelector
+                && APIDrinks.slice(0, DOZE).map((receita, index) => (
+                  <Cards
+                    key={ Math.random() }
+                    id={ receita.idDrink }
+                    nome={ receita.strDrink }
+                    srcImg={ receita.strDrinkThumb }
+                    index={ index }
+                  />
+                ))}
+              </Row>
+            )
+            : global.alert('Sorry, we haven\'t found any recipes for these filters.')
+        }
+
+      </section>
+
       <Footer />
-    </div>
+    </>
   );
 }
 Recipes.propTypes = {

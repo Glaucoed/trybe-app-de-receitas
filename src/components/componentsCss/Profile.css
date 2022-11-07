@@ -1,0 +1,27 @@
+.profile {
+  height: 531px;
+  max-height: 531px;
+}
+
+.profile button {
+  margin: 10px;
+}
+
+.profileEmail {
+  align-content: space-around;
+  display: flex;
+  height: 80px;
+}
+
+.profileEmail span {
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttons {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 450px;
+  justify-content: center;
+}

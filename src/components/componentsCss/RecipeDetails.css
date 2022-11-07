@@ -1,0 +1,84 @@
+.recipeCentral {
+  border-radius: 22px;
+  justify-content: center;
+  max-height: 600px;
+  padding: 0;
+  padding-bottom: 2%;
+  text-align: center;
+}
+
+.recipeDetail {
+  border-radius: 22px;
+  justify-content: center;
+  max-height: 600px;
+  overflow-y: scroll;
+  padding-bottom: 2%;
+  text-align: start;
+}
+
+/* .recipeDetail h1, .recipeDetail h3{
+  width: 183px;
+  padding: 3px 0;
+  padding-left: auto;
+  border-top: 1px solid #40323348;
+  border-bottom: 1px solid #40323348;
+  margin: 35px auto;
+} */
+
+.titleRecipe {
+  border-bottom: 2px solid #403233af;
+  border-top: 2px solid #403233af;
+  margin-top: 20px;
+}
+
+.titleRecipe h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  height: 40px;
+  line-height: 1.5;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recipeDetail h3 {
+  font-size: 1.2rem;
+  overflow: hidden;
+  padding: 20px 0;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recipeDetail p {
+  text-align: justify;
+}
+
+.RecImg {
+  border-bottom: 1px solid rgb(221, 217, 217);
+  margin-left: -12px;
+  width: 346px;
+}
+
+.recipList {
+  list-style: circle;
+}
+
+.btnStart {
+  text-align: center;
+}
+
+.btnStart button {
+  padding: 6px 60px;
+}
+
+.btnCompFav button {
+  margin: 0 5px;
+}
+
+.btnCompFav {
+  margin: 0 auto;
+  padding: 40px 0;
+  text-align: center;
+}

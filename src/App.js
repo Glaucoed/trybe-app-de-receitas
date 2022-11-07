@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Switch } from 'react-router-dom';
-import Provider from './components/Provider';
+import Provider from './Context/Provider';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import RecipeDetails from './pages/RecipeDetails';
@@ -13,7 +13,7 @@ import RecipesInProgress from './pages/RecipesInProgress';
 
 function App() {
   return (
-    <main>
+    <main className="mobile">
       <Provider>
         <Switch>
           <Route exact path="/" component={ Login } />

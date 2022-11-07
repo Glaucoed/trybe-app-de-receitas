@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
@@ -9,8 +13,8 @@ import './componentsCss/Header.css';
 
 export default function Header({ title, header, profile, search }) {
   const history = useHistory();
-  const [hidden, setHidden] = useState(false);
-  const { setAPIDrinks, setAPIMeals } = useContext(MyContext);
+  const { hidden, setHidden } = useContext(MyContext);
+  // setAPIDrinks, setAPIMeals, = context
 
   const handleHistoryPush = () => {
     history.push('/profile');
@@ -18,28 +22,22 @@ export default function Header({ title, header, profile, search }) {
 
   const handleHiddenInput = () => {
     setHidden(!hidden);
-    setAPIDrinks([0, 1]);
-    setAPIMeals([0, 1]);
+    // setAPIDrinks([0, 1]);
+    // setAPIMeals([0, 1]);
   };
 
   return (
-    <div className="headercss">
-      {
-        header
+    <header>
+      <Container>
+        <Row>
+          <Col>
+            {
+              profile
         && (
-          <header>
-            <h3 data-testid="page-title">
-              {title}
-            </h3>
-          </header>
-
-        )
-      }
-      {
-        profile
-        && (
-          <button
+          <Button
+            className="btnProfileH"
             type="button"
+            variant="none"
             onClick={ handleHistoryPush }
           >
             <img
@@ -47,15 +45,32 @@ export default function Header({ title, header, profile, search }) {
               src={ profileIcon }
               alt="profile-icon"
             />
-          </button>
+          </Button>
+        )
+            }
+          </Col>
+          <Col className="colTitle">
+            {
+              header
+        && (
+          <h3
+            data-testid="page-title"
+            className="titleHeader"
+          >
+            {title}
+          </h3>
 
         )
-      }
-      {
-        search
+            }
+          </Col>
+          <Col className="inputSearch">
+            {
+              search
         && (
-          <button
+          <Button
+            className="btnInputH"
             type="button"
+            variant="none"
             onClick={ handleHiddenInput }
           >
             <img
@@ -63,16 +78,20 @@ export default function Header({ title, header, profile, search }) {
               src={ searchIcon }
               alt="search-icon"
             />
-          </button>
+          </Button>
 
         )
 
-      }
-      {
-        hidden
+            }
+          </Col>
+          {
+            hidden
         && (<SearchBar />)
-      }
-    </div>
+          }
+        </Row>
+      </Container>
+
+    </header>
 
   );
 }

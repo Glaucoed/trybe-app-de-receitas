@@ -1,6 +1,15 @@
-.filtercss {
+.categoryFilter {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
+  flex-wrap: wrap;
+  padding-bottom: 4%;
+}
+
+.btnCategory {
+  border-radius: 0;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.19);
+  flex-basis: 120px ! important;
+}
+
+.btn-group > :not( .btn-check:first-child ) + .btn {
+  margin-left: 0;
 }

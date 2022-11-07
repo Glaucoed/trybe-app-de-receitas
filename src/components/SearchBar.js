@@ -1,5 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
 import MyContext from '../Context/MyContext';
 import mealsAPI from '../helpers/functionsAPI';
 import drinksAPI from '../helpers/drinkAPI';
@@ -14,6 +16,8 @@ export default function SearchBar() {
     APIMeals,
     radio,
     handleChangeRadio,
+    hidden,
+    setHidden,
   } = useContext(MyContext);
 
   const history = useHistory();
@@ -21,12 +25,13 @@ export default function SearchBar() {
   const clickMeals = async () => {
     if (radio === 'ingrediente') {
       const ingredientesApi = await mealsAPI(`filter.php?i=${inputSearch}`);
-      console.log(ingredientesApi.meals);
       setAPIMeals(ingredientesApi.meals);
+      setHidden(!hidden);
     }
     if (radio === 'nome') {
       const ingredientesApi = await mealsAPI(`search.php?s=${inputSearch}`);
       setAPIMeals(ingredientesApi.meals);
+      setHidden(!hidden);
     }
     if (radio === 'primeira-letra') {
       if (inputSearch.length > 1) {
@@ -34,6 +39,7 @@ export default function SearchBar() {
       }
       const ingredientesApi = await mealsAPI(`search.php?f=${inputSearch}`);
       setAPIMeals(ingredientesApi.meals);
+      setHidden(!hidden);
     }
   };
 
@@ -73,62 +79,60 @@ export default function SearchBar() {
   }, [APIDrinks, history, functionSelector]);
 
   return (
-    <div>
-      <input
-        type="text"
-        value={ inputSearch }
-        data-testid="search-input"
-        onChange={ (e) => handleChange(e.target.value) }
+    <Form>
+      <Form.Group className="mb-3" controlId="inputSearch">
+        <Form.Control
+          type="text"
+          placeholder="Digite sua busca"
+          value={ inputSearch }
+          data-testid="search-input"
+          onChange={ (e) => handleChange(e.target.value) }
+        />
+      </Form.Group>
+
+      <Form.Check
+        inline
+        label="Ingredient"
+        data-testid="ingredient-search-radio"
+        type="radio"
+        value="ingrediente"
+        onChange={ handleChangeRadio }
+        name={ radio }
+        id="ingredient"
       />
-      <label
-        htmlFor="ingredient"
-      >
-        <input
-          data-testid="ingredient-search-radio"
-          type="radio"
-          value="ingrediente"
-          onChange={ handleChangeRadio }
-          name={ radio }
-          id="ingredient"
-        />
-        Ingredient
-      </label>
 
-      <label
-        htmlFor="name"
-      >
-        <input
-          data-testid="name-search-radio"
-          type="radio"
-          value="nome"
-          onChange={ handleChangeRadio }
-          name={ radio }
-          id="name"
-        />
-        Name
-      </label>
+      <Form.Check
+        inline
+        label="Name"
+        data-testid="name-search-radio"
+        type="radio"
+        value="nome"
+        onChange={ handleChangeRadio }
+        name={ radio }
+        id="name"
+      />
 
-      <label
-        htmlFor="firstletter"
-      >
-        <input
-          data-testid="first-letter-search-radio"
-          type="radio"
-          value="primeira-letra"
-          onChange={ handleChangeRadio }
-          name={ radio }
-          id="firstletter"
-        />
-        First letter
-      </label>
-
-      <button
-        type="button"
-        data-testid="exec-search-btn"
-        onClick={ functionSelector ? clickMeals : clickBebidas }
-      >
-        Search
-      </button>
-    </div>
+      <Form.Check
+        inline
+        label="First letter"
+        data-testid="first-letter-search-radio"
+        type="radio"
+        value="primeira-letra"
+        onChange={ handleChangeRadio }
+        name={ radio }
+        id="firstletter"
+      />
+      <div className="searchBarhBtn">
+        <Button
+          className="btnSearchBar"
+          variant="warning"
+          type="button"
+          data-testid="exec-search-btn"
+          onClick={ functionSelector ? clickMeals : clickBebidas }
+        >
+          Search
+        </Button>
+      </div>
+    </Form>
   );
 }

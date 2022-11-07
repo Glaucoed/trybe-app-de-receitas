@@ -1,0 +1,39 @@
+.rowRecom {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin: 0 auto;
+  margin-bottom: 60px;
+  overflow-x: scroll;
+  width: 300px;
+}
+
+.imgRecom {
+  width: 130px;
+}
+
+.cardRem {
+  margin-bottom: 10px;
+}
+
+a {
+  color: #c79d2e;
+}
+
+a:hover {
+  color: #c79d2e;
+  text-decoration: none;
+}
+
+.recipeDetail span {
+  font-weight: 900;
+
+}
+
+.recipeDetail h4 {
+  border-bottom: 1px solid #40323348;
+  border-top: 1px solid #40323348;
+  margin: 20px auto;
+  padding: 6px 0;
+  width: 183px;
+}

@@ -1,0 +1,84 @@
+.categoryNav {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btnDoneAndFav {
+  border-radius: 0;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.19);
+  flex-basis: 115px ! important;
+}
+
+.containerFavAndDone {
+  height: 485px;
+  margin: 0;
+  margin-top: 5px;
+  max-height: 485px;
+  overflow-y: scroll;
+}
+
+.cardDoneAndFav {
+  background-color: #403233;
+  border: solid 1px #403233;
+  color: rgba(255, 202, 44, 0.705);
+  height: 176px;
+  margin-bottom: 10px;
+  max-height: 176px;
+}
+
+.cardDoneAndFav p {
+  color: white;
+}
+
+.imgDoneAndFav {
+  width: 174px;
+}
+
+.containerFavAndDone button {
+  margin: 0 8px;
+  padding: 5px;
+}
+
+.dateDoneAndFav {
+  color: white;
+  font-size: 0.9rem;
+  line-height: 2.3rem;
+}
+
+.notRecipes {
+  align-items: center;
+  display: flex;
+  height: 485px;
+  justify-content: space-evenly;
+  width: 332px;
+}
+
+.containerFavAndDone a{
+  text-decoration: none;
+}
+.containerFavAndDone h3{
+  width: 122px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.done-recipe-top p{
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tagsFav{
+  height: 30px;
+  width: 122px;
+  display: flex;
+  font-size: 0.7rem;
+  justify-content: space-around;
+
+}
+.tagsFav p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 5px;
+}

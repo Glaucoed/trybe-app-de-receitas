@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/esm/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/esm/Col';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import '../components/componentsCss/Profile.css';
 
 export default function Profile() {
   const getEmail = () => {
@@ -12,30 +17,61 @@ export default function Profile() {
   };
   const getLocalStorage = getEmail();
 
-  const clearLocalStorage = () => {
-    localStorage.clear();
-  };
-
   return (
-    <div>
+    <>
       <Header header profile search={ false } title="Profile" />
+      <Container className="profile">
+        <Col>
+          <Row className="profileEmail">
+            <span
+              data-testid="profile-email"
+            >
+              { `Usuário: ${getLocalStorage}` }
+
+            </span>
+          </Row>
+        </Col>
+        <Col className="buttons">
+          <Link to="/done-recipes">
+            <Button
+              className="group-btn-profile"
+              variant="warning"
+              data-testid="profile-done-btn"
+              type="button"
+            >
+              Done Recipes
+
+            </Button>
+          </Link>
+
+          <Link to="/favorite-recipes">
+            <Button
+              className="group-btn-profile"
+              variant="warning"
+              data-testid="profile-favorite-btn"
+              type="button"
+            >
+              Favorite Recipes
+
+            </Button>
+          </Link>
+
+          <Link data-testid="profile-logout-btn" to="/">
+            <Button
+              className="group-btn-profile"
+              variant="warning"
+              onClick={ () => { localStorage.clear(); } }
+              type="button"
+            >
+              Logout
+
+            </Button>
+          </Link>
+
+        </Col>
+      </Container>
       <Footer />
-      <p data-testid="profile-email">{ getLocalStorage }</p>
-      <Link to="/done-recipes">
-        <button data-testid="profile-done-btn" type="button">
-          Done Recipes
-        </button>
-      </Link>
-      <Link to="/favorite-recipes">
-        <button data-testid="profile-favorite-btn" type="button">
-          Favorite Recipes
-        </button>
-      </Link>
-      <Link data-testid="profile-logout-btn" to="/">
-        <button onClick={ clearLocalStorage } type="button">
-          Logout
-        </button>
-      </Link>
-    </div>
+    </>
+
   );
 }

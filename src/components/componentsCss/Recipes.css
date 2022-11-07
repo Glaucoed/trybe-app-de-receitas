@@ -1,0 +1,31 @@
+.rowRecipe {
+  height: 398px;
+  margin: 0;
+  margin-top: 5px;
+  max-height: 398px;
+  overflow-y: scroll;
+}
+
+/* width */
+::-webkit-scrollbar {
+  margin-top: 20px;
+  width: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #4032336b;
+  border-radius: 10px;
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #40323388;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #403233b9;
+}

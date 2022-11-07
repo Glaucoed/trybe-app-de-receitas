@@ -1,8 +1,7 @@
-.ingredientes {
-  display: flex;
-  flex-direction: column;
+.checked {
+  text-decoration: line-through solid black;
 }
 
-.checado {
-  text-decoration: line-through solid black;
+.ingredients span {
+  margin-left: 10px;
 }

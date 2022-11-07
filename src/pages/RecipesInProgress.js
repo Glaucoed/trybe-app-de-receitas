@@ -47,35 +47,35 @@ export default function RecipesInProgress() {
   }
   return (
     <div>
-      <div>
+      <section>
         {!conditionalRender
-      && <ProgrressCard
-        alcoholicOrNot={ estadoParalelo[0].strAlcoholic }
-        nationality=""
-        type="drink"
-        id={ estadoParalelo[0].idDrink }
-        img={ estadoParalelo[0].strDrinkThumb }
-        title={ estadoParalelo[0].strDrink }
-        category={ estadoParalelo[0].strCategory }
-        instructions={ estadoParalelo[0].strInstructions }
-        ingredients={ estadoParalelo[1] }
-      />}
-      </div>
-      <div>
+          && <ProgrressCard
+            alcoholicOrNot={ estadoParalelo[0].strAlcoholic }
+            nationality=""
+            type="drink"
+            id={ estadoParalelo[0].idDrink }
+            img={ estadoParalelo[0].strDrinkThumb }
+            title={ estadoParalelo[0].strDrink }
+            category={ estadoParalelo[0].strCategory }
+            instructions={ estadoParalelo[0].strInstructions }
+            ingredients={ estadoParalelo[1] }
+          />}
+      </section>
+      <section>
         {conditionalRender
-      && <ProgrressCard
-        alcoholicOrNot=""
-        nationality={ estadoParalelo[0].strArea }
-        type="meal"
-        strTag={ estadoParalelo[0].strTags }
-        id={ estadoParalelo[0].idMeal }
-        img={ estadoParalelo[0].strMealThumb }
-        title={ estadoParalelo[0].strMeal }
-        category={ estadoParalelo[0].strCategory }
-        instructions={ estadoParalelo[0].strInstructions }
-        ingredients={ estadoParalelo[1] }
-      />}
-      </div>
+          && <ProgrressCard
+            alcoholicOrNot=""
+            nationality={ estadoParalelo[0].strArea }
+            type="meal"
+            strTag={ estadoParalelo[0].strTags }
+            id={ estadoParalelo[0].idMeal }
+            img={ estadoParalelo[0].strMealThumb }
+            title={ estadoParalelo[0].strMeal }
+            category={ estadoParalelo[0].strCategory }
+            instructions={ estadoParalelo[0].strInstructions }
+            ingredients={ estadoParalelo[1] }
+          />}
+      </section>
     </div>
   );
 }

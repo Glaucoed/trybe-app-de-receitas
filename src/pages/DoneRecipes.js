@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import Container from 'react-bootstrap/esm/Container';
 import DoneRecipeCard from '../components/DoneRecipeCard';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import mockDoneRecipes from '../tests/mocks/mockDoneRecipes';
+import NavDoneFavorite from '../components/NavDoneFavorite';
+import '../components/componentsCss/NavFavoriteAndDone.css';
 
 export default function DoneRecipes() {
   const [filter, setFilter] = useState('all');
@@ -12,58 +14,34 @@ export default function DoneRecipes() {
     ? doneRecipes
     : doneRecipes.filter((meal) => meal.type === filter);
 
-  const key = 'doneRecipes';
-  window.localStorage.setItem(key, JSON.stringify(mockDoneRecipes));
-  const storage = localStorage.getItem('doneRecipes');
-  console.log(storage);
-
   return (
     <div>
+
       <Header header profile search={ false } title="Done Recipes" />
-      <div>
-        <button
-          type="button"
-          data-testid="filter-by-all-btn"
-          onClick={ () => {
-            setFilter('all');
-          } }
-        >
-          All
-        </button>
-        <button
-          type="button"
-          data-testid="filter-by-meal-btn"
-          onClick={ () => {
-            setFilter('meal');
-          } }
-        >
-          Meals
-        </button>
-        <button
-          type="button"
-          data-testid="filter-by-drink-btn"
-          onClick={ () => {
-            setFilter('drink');
-          } }
-        >
-          Drinks
-        </button>
-      </div>
-      <section>
-        { renderRecipes.length === 0
-          ? (
-            <div>
-              <p>Sem receitas finalizadas</p>
-            </div>
-          )
-          : (
-            <DoneRecipeCard
-              food={ renderRecipes }
-            />
-          ) }
+
+      <NavDoneFavorite setFilter={ setFilter } />
+
+      <section className="containerFavAndDone">
+        {
+          renderRecipes.length === 0
+            ? (
+              <Container
+                className="notRecipes"
+              >
+                <span className="rowFav">Sem receitas finalizadas</span>
+              </Container>
+            )
+            : (
+              <Container>
+                <DoneRecipeCard food={ renderRecipes } />
+              </Container>
+            )
+        }
       </section>
 
       <Footer />
+
     </div>
+
   );
 }
