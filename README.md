@@ -40,7 +40,7 @@ Tecnologias aplicadas no projeto
 - RTL
 - CSS
 - JavaScript
-
+- Consumo de API
 ---
 
 ## Entregáveis:
