@@ -38,6 +38,9 @@ Tecnologias aplicadas no projeto
 
 - React
 - RTL
+- CSS
+- JavaScript
+
 ---
 
 ## Entregáveis:
